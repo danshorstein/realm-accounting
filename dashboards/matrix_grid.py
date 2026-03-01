@@ -18,8 +18,11 @@ def render_matrix(
     # Filter by category
     cat_df = df[df["Category"] == category].copy()
     
-    if selected_fund is not None:
+    if selected_fund is not None and "Fund" in cat_df.columns:
         cat_df = cat_df[cat_df["Fund"] == selected_fund]
+    elif selected_fund is not None and "Fund Name" in cat_df.columns:
+        from chart_of_accounts import get_fund_name
+        cat_df = cat_df[cat_df["Fund Name"] == get_fund_name(selected_fund)]
 
     if cat_df.empty:
         st.info(f"No {category} data found.")

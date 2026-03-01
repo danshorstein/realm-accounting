@@ -271,7 +271,8 @@ def get_config() -> Config:
             "REALM_LOGIN_URL", f"https://onrealm.org/{site_id}/SignIn"
         ),
         export_url=os.getenv(
-            "REALM_EXPORT_URL", "https://onrealm.org/api/accounting/ledgerinquiry/export"
+            "REALM_EXPORT_URL",
+            f"https://onrealm.org/{site_id}/LedgerInquiry/ExportGridReport",
         ),
     )
 

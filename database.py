@@ -27,6 +27,15 @@ def init_db() -> None:
         # but we can enforce some schema rules or indices here if needed.
         # For Chart of Accounts / Beginning Balances, we'll create dedicated tables later.
         
+        # Track data refresh timestamps
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS sync_log (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                sync_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                status TEXT
+            )
+        """)
+        
         conn.commit()
         
     _seed_beginning_balances()
@@ -122,10 +131,20 @@ def load_beginning_balances() -> pd.DataFrame:
 
 def save_transactions(df: pd.DataFrame) -> None:
     """Save enriched transaction dataframe to the database, replacing old data."""
+    # Convert Decimals down to float for sqlite storage since it doesn't natively support decimal types well
+    df_sql = df.copy()
+    for col in ["Debit", "Credit", "net"]:
+        if col in df_sql.columns:
+            df_sql[col] = df_sql[col].astype(float)
+            
+    # Period objects are not supported by sqlite
+    if "Month" in df_sql.columns:
+        df_sql["Month"] = df_sql["Month"].astype(str)
+            
     with get_connection() as conn:
         # We replace the table entirely on a refresh for simplicity, 
         # acting as a robust cache rather than a complex incremental sync.
-        df.to_sql("transactions", conn, if_exists="replace", index=False)
+        df_sql.to_sql("transactions", conn, if_exists="replace", index=False)
 
 def load_transactions() -> pd.DataFrame | None:
     """Load transactions from the database, parsing dates correctly."""
@@ -140,7 +159,39 @@ def load_transactions() -> pd.DataFrame | None:
             # so we reconstruct it here after reading.
             if not df.empty and "Date" in df.columns:
                 df["Month"] = df["Date"].dt.to_period("M")
+            
+            # Restore 2-place Decimals
+            TWO_PLACES = Decimal("0.00")
+            for col in ["Debit", "Credit", "net"]:
+                if col in df.columns:
+                    df[col] = df[col].apply(lambda x: Decimal(str(x)).quantize(TWO_PLACES) if not pd.isna(x) else Decimal("0.00"))
+                    
             return df
         except sqlite3.OperationalError:
             # Table doesn't exist yet
             return None
+
+def save_sync_time() -> None:
+    """Record the time of a successful data refresh."""
+    init_db()
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO sync_log (status) VALUES ('SUCCESS')")
+        conn.commit()
+
+def get_last_sync_time() -> str | None:
+    """Retrieve the most recent successful sync time."""
+    init_db()
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT sync_time FROM sync_log WHERE status = 'SUCCESS' ORDER BY id DESC LIMIT 1")
+            row = cursor.fetchone()
+            if row:
+                # Convert from UTC to local time string if desired, or just return as is
+                # SQLite CURRENT_TIMESTAMP is UTC
+                dt = pd.to_datetime(row[0]).tz_localize("UTC").tz_convert("US/Eastern")
+                return dt.strftime("%b %d, %Y %I:%M %p EST")
+        except sqlite3.OperationalError:
+            pass
+    return None

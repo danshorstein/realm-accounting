@@ -9,6 +9,7 @@ load_dotenv()
 
 from chart_of_accounts import FUND_NAMES
 from data_loader import load_cached_data, refresh_data
+from database import get_last_sync_time
 
 from dashboards import income_statement, balance_sheet, cash_flow, budget_vs_actuals, ai_insights
 
@@ -65,8 +66,15 @@ with st.sidebar:
                 df = refresh_data()
                 st.session_state["data"] = df
                 st.success("Data refreshed!")
+                st.rerun()
             except Exception as e:
                 st.error(f"Error: {e}")
+
+    last_sync = get_last_sync_time()
+    if last_sync:
+        st.caption(f"**Last Refreshed:** {last_sync}")
+    else:
+        st.caption("No refresh history found.")
 
     st.caption(
         "Loads latest transactions from OnRealm. "

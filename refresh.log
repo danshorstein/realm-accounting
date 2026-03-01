@@ -1,0 +1,56 @@
+INFO:realm_client:Navigating to ministrylogin URL...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): onrealm.org:443
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/SignIn HTTP/1.1" 302 447
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): auth.ministrylogin.com:443
+DEBUG:urllib3.connectionpool:https://auth.ministrylogin.com:443 "GET /oauth/v2/oauth-authorize?client_id=acst_login_client&response_type=code&redirect_uri=https://onrealm.org/SitedSsoSignIn&scope=email+openid&claims=%7B%22access_token%22%3A%7B%22email%22%3A%7B%22essential%22%3Atrue%7D%2C%22account_id%22%3Anull%7D%7D&state=JacksonvilleJewishCenter%7C HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://auth.ministrylogin.com:443 "GET /authn/authentication?serviceProviderId=token-service&resumePath=%2Foauth%2Fv2%2Foauth-authorize&state=R_hgqYntBrCf91PkRbkmVfGfeJZnyC98ko&client_id=acst_login_client HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://auth.ministrylogin.com:443 "GET /authn/authentication/acst_general_login_form?_oq=aHR0cHM6Ly9vbnJlYWxtLm9yZy9JbnZhbGlkU3NvUmVkaXJlY3Q_Y2xpZW50X2lkPWFjc3RfbG9naW5fY2xpZW50JnJlc3BvbnNlX3R5cGU9Y29kZSZyZWRpcmVjdF91cmk9aHR0cHMlM0ElMkYlMkZvbnJlYWxtLm9yZyUyRlNpdGVkU3NvU2lnbkluJnNjb3BlPWVtYWlsK29wZW5pZCZjbGFpbXM9JTdCJTIyYWNjZXNzX3Rva2VuJTIyJTNBJTdCJTIyZW1haWwlMjIlM0ElN0IlMjJlc3NlbnRpYWwlMjIlM0F0cnVlJTdEJTJDJTIyYWNjb3VudF9pZCUyMiUzQW51bGwlN0QlN0Qmc3RhdGU9SmFja3NvbnZpbGxlSmV3aXNoQ2VudGVyJTdD HTTP/1.1" 200 5752
+INFO:realm_client:Submitting credentials...
+DEBUG:urllib3.connectionpool:https://auth.ministrylogin.com:443 "POST /authn/authentication/acst_general_login_form HTTP/1.1" 200 2260
+DEBUG:urllib3.connectionpool:https://auth.ministrylogin.com:443 "POST /oauth/v2/oauth-authorize HTTP/1.1" 303 0
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /SitedSsoSignIn?iss=https%3A%2F%2Fauth.ministrylogin.com%2Foauth%2Fv2%2Foauth-anonymous&code=fdoz91z8fFnLv9U05yOP87aJ9gRyHF1k&state=JacksonvilleJewishCenter%7C&session_state=YksF%2F3NQF%2FZNkRBPfLCs13QHZCRrUVaJFUj6U69AfLU%3D.ELdtKVnlVV6D HTTP/1.1" 302 171
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/Account/SsoAuthorizeRedirect HTTP/1.1" 302 147
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/Home HTTP/1.1" 302 158
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/Home/Accounting HTTP/1.1" 302 161
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/LedgerTransactions HTTP/1.1" 302 178
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/LedgerTransactions/OpenTransactions HTTP/1.1" 200 1432526
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /JacksonvilleJewishCenter/LedgerInquiry HTTP/1.1" 200 1125888
+INFO:realm_client:Login successful.
+INFO:realm_client:Downloading export CSV...
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /api/accounting/ledgerinquiry/export?filter=%7B%22FundId%22%3Anull%2C%22CoreAccountId%22%3Anull%2C%22DepartmentId%22%3Anull%2C%22VendorSearch%22%3Anull%2C%22ReferenceNumberMin%22%3Anull%2C%22ReferenceNumberMax%22%3Anull%2C%22AmountMin%22%3Anull%2C%22AmountMax%22%3Anull%2C%22TransactionTypeIdList%22%3Anull%2C%22DescriptionSearch%22%3Anull%2C%22ProjectId%22%3Anull%2C%22ReconcileStatus%22%3Anull%2C%22LedgerType%22%3Anull%2C%22IsImported%22%3Anull%2C%22BeginDate%22%3A%2207%2F01%2F2025%22%2C%22EndDate%22%3A%2203%2F01%2F2026%22%2C%22IncludeOpenTransactions%22%3Atrue%2C%22IncludeUserClosingEntries%22%3Afalse%2C%22SortBy%22%3A%22TransactionDate%22%2C%22SortAscending%22%3Afalse%2C%22IsInquiry%22%3Atrue%7D HTTP/1.1" 200 7081
+DEBUG:charset_normalizer:Encoding detection: utf_8 is most likely the one.
+DEBUG:charset_normalizer:Encoding detection: utf_8 is most likely the one.
+INFO:realm_client:Downloading export CSV...
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /api/accounting/ledgerinquiry/export?filter=%7B%22FundId%22%3Anull%2C%22CoreAccountId%22%3Anull%2C%22DepartmentId%22%3Anull%2C%22VendorSearch%22%3Anull%2C%22ReferenceNumberMin%22%3Anull%2C%22ReferenceNumberMax%22%3Anull%2C%22AmountMin%22%3Anull%2C%22AmountMax%22%3Anull%2C%22TransactionTypeIdList%22%3Anull%2C%22DescriptionSearch%22%3Anull%2C%22ProjectId%22%3Anull%2C%22ReconcileStatus%22%3Anull%2C%22LedgerType%22%3Anull%2C%22IsImported%22%3Anull%2C%22BeginDate%22%3A%2207%2F01%2F2025%22%2C%22EndDate%22%3A%2203%2F01%2F2026%22%2C%22IncludeOpenTransactions%22%3Atrue%2C%22IncludeUserClosingEntries%22%3Afalse%2C%22SortBy%22%3A%22TransactionDate%22%2C%22SortAscending%22%3Afalse%2C%22IsInquiry%22%3Atrue%7D HTTP/1.1" 200 7081
+DEBUG:charset_normalizer:Encoding detection: utf_8 is most likely the one.
+DEBUG:charset_normalizer:Encoding detection: utf_8 is most likely the one.
+INFO:realm_client:Downloading export CSV...
+DEBUG:urllib3.connectionpool:https://onrealm.org:443 "GET /api/accounting/ledgerinquiry/export?filter=%7B%22FundId%22%3Anull%2C%22CoreAccountId%22%3Anull%2C%22DepartmentId%22%3Anull%2C%22VendorSearch%22%3Anull%2C%22ReferenceNumberMin%22%3Anull%2C%22ReferenceNumberMax%22%3Anull%2C%22AmountMin%22%3Anull%2C%22AmountMax%22%3Anull%2C%22TransactionTypeIdList%22%3Anull%2C%22DescriptionSearch%22%3Anull%2C%22ProjectId%22%3Anull%2C%22ReconcileStatus%22%3Anull%2C%22LedgerType%22%3Anull%2C%22IsImported%22%3Anull%2C%22BeginDate%22%3A%2207%2F01%2F2025%22%2C%22EndDate%22%3A%2203%2F01%2F2026%22%2C%22IncludeOpenTransactions%22%3Atrue%2C%22IncludeUserClosingEntries%22%3Afalse%2C%22SortBy%22%3A%22TransactionDate%22%2C%22SortAscending%22%3Afalse%2C%22IsInquiry%22%3Atrue%7D HTTP/1.1" 200 7081
+DEBUG:charset_normalizer:Encoding detection: utf_8 is most likely the one.
+DEBUG:charset_normalizer:Encoding detection: utf_8 is most likely the one.
+Traceback (most recent call last):
+  File "/Users/danielshorstein/jjc_financials/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/Users/danielshorstein/jjc_financials/realm_client.py", line 247, in download_export_csv
+    raise RuntimeError(
+        "Export returned HTML instead of CSV. Saved export_unexpected_html.html"
+    )
+RuntimeError: Export returned HTML instead of CSV. Saved export_unexpected_html.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/danielshorstein/jjc_financials/test_refresh.py", line 9, in main
+    df = refresh_data()
+  File "/Users/danielshorstein/jjc_financials/data_loader.py", line 128, in refresh_data
+    download_export_csv(session, cfg, filt, out_file)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielshorstein/jjc_financials/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "/Users/danielshorstein/jjc_financials/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/Users/danielshorstein/jjc_financials/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/Users/danielshorstein/jjc_financials/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 414, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1101ec050 state=finished raised RuntimeError>]

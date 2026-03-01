@@ -36,12 +36,12 @@ from chart_of_accounts import classify_account
     (291005, "Net Assets", "Endowment Funds"),
     
     # Revenue (2nd digit is 3)
-    (132240, "Revenue", "Revenue"), # Center Fund Gen Donations Rev
-    (435110, "Revenue", "Revenue"), # Cemetery Lot Sales Rev
+    (132240, "Revenue", "Donations & Fundraising"), # Center Fund Gen Donations Rev
+    (435110, "Revenue", "Donations & Fundraising"), # Cemetery Lot Sales Rev
     
     # Expense (2nd digit is 4)
-    (142980, "Expense", "Expense"), # Center Merchant Fees Exp
-    (241164, "Expense", "Expense"), # PS Repair & Supplies Exp
+    (142980, "Expense", "General & Administrative"), # Center Merchant Fees Exp
+    (241164, "Expense", "Facilities & Maintenance"), # PS Repair & Supplies Exp
     
     # Edge Cases
     (159999, "Other", "Uncategorized"), # Unknown pattern (no 5 as 2nd digit)

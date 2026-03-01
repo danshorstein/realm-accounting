@@ -9,7 +9,7 @@ from decimal import Decimal
 import pandas as pd
 
 from chart_of_accounts import classify_account, get_fund_name, get_hierarchy
-from database import load_beginning_balances, load_transactions, save_transactions
+from database import load_beginning_balances, load_transactions, save_transactions, save_sync_time
 from realm_client import (
     Config,
     build_export_filter,
@@ -130,6 +130,7 @@ def refresh_data(
     # Load, enrich, and save to database
     enriched_df = load_and_combine(out_file)
     save_transactions(enriched_df)
+    save_sync_time()
     
     return enriched_df
 

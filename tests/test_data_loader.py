@@ -15,7 +15,12 @@ def sample_transactions():
             "Category": "Asset",
             "Subcategory": "Cash & Cash Equivalents",
             "Description": "Beginning Balance",
-            "net": Decimal("1000.50")
+            "net": Decimal("1000.50"),
+            "Fund Name": "Main Fund",
+            "L1": "CURRENT ASSETS",
+            "L2": "Operating Cash",
+            "L3": "Checking Account",
+            "Unified": "CURRENT ASSETS"
         },
         {
             "Fund": 1,
@@ -24,7 +29,12 @@ def sample_transactions():
             "Category": "Asset",
             "Subcategory": "Cash & Cash Equivalents",
             "Description": "Deposit Transfer",
-            "net": Decimal("500.00")
+            "net": Decimal("500.00"),
+            "Fund Name": "Main Fund",
+            "L1": "CURRENT ASSETS",
+            "L2": "Operating Cash",
+            "L3": "Checking Account",
+            "Unified": "CURRENT ASSETS"
         },
         {
             "Fund": 1,
@@ -33,7 +43,12 @@ def sample_transactions():
             "Category": "Expense",
             "Subcategory": "Expense",
             "Description": "Office Max",
-            "net": Decimal("150.25")
+            "net": Decimal("150.25"),
+            "Fund Name": "Main Fund",
+            "L1": "Expense",
+            "L2": "General & Administrative",
+            "L3": "",
+            "Unified": "G&A"
         }
     ])
 
