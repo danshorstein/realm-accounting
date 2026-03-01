@@ -6,3 +6,10 @@ __pycache__/
 .DS_Store
 export_unexpected_html.html
 *.csv
+*.sqlite
+*.db
+
+# Sensitive local configurations
+beginning_balances_seed.json
+coa_mapping.json
+proposed_subcategories.json
