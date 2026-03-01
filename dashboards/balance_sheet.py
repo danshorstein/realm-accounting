@@ -61,7 +61,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
                 color_discrete_sequence=px.colors.qualitative.Set2,
             )
             fig.update_layout(margin=dict(t=30, l=0, r=0, b=0))
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
 
     # Executive Summary stops here (after KPIs + pie chart)
     if view_mode == "Executive Summary":
@@ -137,12 +137,12 @@ def _render_fund_comparison(df: pd.DataFrame) -> None:
             },
         )
         fig.update_layout(yaxis_tickformat="$,.0f", legend_title="")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         st.dataframe(
             fund_df.style.format(
                 {"Assets": "${:,.2f}", "Liabilities": "${:,.2f}", "Net Assets": "${:,.2f}"}
             ),
-            use_container_width=True,
+            width='stretch',
             hide_index=True,
         )

@@ -59,7 +59,7 @@ with st.sidebar:
     # Data management
     st.subheader("Data")
 
-    if st.button("Refresh Data from OnRealm", type="primary", use_container_width=True):
+    if st.button("Refresh Data from OnRealm", type="primary", width='stretch'):
         with st.spinner("Logging in and downloading data..."):
             try:
                 df = refresh_data()

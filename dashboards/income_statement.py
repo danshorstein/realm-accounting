@@ -86,7 +86,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
             yaxis_tickformat="$,.0f",
             legend_title="",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
     # --- YTD Cumulative Net Income trend line ---
     if not mv.empty:
@@ -114,7 +114,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
             yaxis_title="Cumulative Net ($)",
             showlegend=False,
         )
-        st.plotly_chart(fig_ytd, use_container_width=True)
+        st.plotly_chart(fig_ytd, width='stretch')
 
     # Executive Summary stops here
     if view_mode == "Executive Summary":
@@ -160,7 +160,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
             color_continuous_scale="Reds",
         )
         fig2.update_layout(margin=dict(t=30, l=0, r=0, b=0))
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
     # --- Fund comparison (All Funds mode) ---
     if selected_fund is None:
@@ -198,12 +198,12 @@ def _render_fund_comparison(df: pd.DataFrame) -> None:
             },
         )
         fig.update_layout(yaxis_tickformat="$,.0f", legend_title="")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         st.dataframe(
             fund_summary.style.format(
                 {"Revenue": "${:,.2f}", "Expenses": "${:,.2f}", "Net Income": "${:,.2f}"}
             ),
-            use_container_width=True,
+            width='stretch',
             hide_index=True,
         )

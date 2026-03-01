@@ -82,7 +82,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
             yaxis_tickformat="$,.0f",
             legend_title="",
         )
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
     # Executive Summary: running balance + fund comparison, then stop
     if view_mode == "Executive Summary":
@@ -120,7 +120,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
             yaxis_tickformat="$,.0f",
             legend_title="",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
     # --- Monthly net activity with MoM % annotations ---
     st.subheader("Monthly Net Activity")
@@ -159,7 +159,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
             yaxis_title="Net ($)",
             yaxis_tickformat="$,.0f",
         )
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width='stretch')
 
     # --- Top largest transactions with filters ---
     st.subheader("Largest Transactions")
@@ -192,7 +192,7 @@ def render(df: pd.DataFrame, selected_fund: int | None, view_mode: str = "Detail
 
     st.dataframe(
         top_txn.style.format({"Amount": "${:,.2f}"}),
-        use_container_width=True,
+        width='stretch',
         hide_index=True,
     )
 
@@ -254,4 +254,4 @@ def _render_fund_comparison(df: pd.DataFrame) -> None:
             yaxis_tickformat="$,.0f",
             legend_title="Fund",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
