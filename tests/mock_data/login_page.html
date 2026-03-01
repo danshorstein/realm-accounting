@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In - ACS Technologies</title>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Main Form -->
+        <form method="post" action="/login/authenticate?_oq=some-long-token" id="loginForm">
+            <input type="hidden" name="__RequestVerificationToken" value="abc123xyz" />
+            
+            <div class="form-group">
+                <label for="userName">Email Address</label>
+                <input class="form-control" type="email" id="userName" name="userName" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required />
+            </div>
+            
+            <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>
